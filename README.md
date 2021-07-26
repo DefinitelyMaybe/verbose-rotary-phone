@@ -1,5 +1,17 @@
 # Verbose-Rotary-Phone
 
+Making a concept re-creation environment.
+
+- Drawing
+- Text
+- Images
+- Video
+
+- Links to other concepts/files
+- Links to components on the same page
+- Saving/Loading
+- Forking/Merging
+
 The initial part of displaying a files history is the git command `git log`
 Github's display of the histroy is a returned result of this command.
 Github uses a url scheme like so:
