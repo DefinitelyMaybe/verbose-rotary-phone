@@ -1,3 +1,15 @@
+<script>
+  import Text from "../components/text.svelte";
+  import Object from "../components/object.svelte";
+  import Reference from "../components/reference.svelte";
+  let x = 1
+
+  function handleClick() {
+    console.log(x);
+    x += 1
+  }
+</script>
+
 <svelte:head>
 	<title>Welcome</title>
 </svelte:head>
@@ -7,11 +19,10 @@
 
 <button on:click="{handleClick}">click me</button>
 
-<script>
-  let x = 1
+<Object></Object>
+<Text></Text>
+<Reference></Reference>
 
-  function handleClick() {
-    console.log(x);
-    x += 1
-  }
-</script>
+
+<style>
+</style>
