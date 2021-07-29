@@ -1,3 +1,4 @@
+// @ts-ignore
 import { PointText, Point, Path } from 'https://cdn.skypack.dev/paper';
 
 var path;
