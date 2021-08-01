@@ -32,7 +32,7 @@
 		left: calc(50% - var(--width) / 2);
 		top: calc(50% - var(--height) / 2);
 		border-radius: 4px;
-		background-color: #ff3e00;
+		background-color: hsl(194, 80%, 36%);
 		cursor: move;
   }
 </style>
