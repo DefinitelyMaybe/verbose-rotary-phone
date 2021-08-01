@@ -10,7 +10,8 @@
 <style>
   textarea {
     font-size: x-large;
-    /* color: whitesmoke;
-    background-color: black; */
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
   }
 </style>
