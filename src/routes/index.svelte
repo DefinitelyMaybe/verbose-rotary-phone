@@ -2,11 +2,28 @@
   import Text from "../components/text.svelte";
   import Object from "../components/object.svelte";
   import Reference from "../components/reference.svelte";
-  let x = 1
+  import { save, load, resetSceneStorage } from "../localStorage.js";
+  import { onMount } from "svelte";
 
-  function handleClick() {
+
+  onMount(() => {
+    new Text({
+      target: document.body
+    });
+  })
+
+  function handleButton1Click() {
+    
+  }
+
+  function handleButton2Click() {
+    const x = load()
     console.log(x);
-    x += 1
+    if (x) {
+      document.body.outerHTML = x
+    } else {
+      console.log("no data");
+    }
   }
 </script>
 
@@ -17,7 +34,9 @@
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
-<button on:click="{handleClick}">click me</button>
+<button on:click="{save}">save</button>
+<button on:click="{handleButton2Click}">load</button>
+<button on:click="{resetSceneStorage}">reset</button>
 
 <Object></Object>
 <Text></Text>
