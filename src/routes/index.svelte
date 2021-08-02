@@ -1,29 +1,22 @@
 <script>
-  import Text from "../components/text.svelte";
-  import Object from "../components/object.svelte";
-  import Reference from "../components/reference.svelte";
-  import { save, load, resetSceneStorage } from "../localStorage.js";
-  import { onMount } from "svelte";
+  import Scene from "../components/scene.svelte";
+  import { MyStorageManager } from "../storageManager.js";
 
-
-  onMount(() => {
-    new Text({
-      target: document.body
-    });
-  })
+  // const scene = new Scene()
+  const storage = new MyStorageManager()
 
   function handleButton1Click() {
     
   }
 
   function handleButton2Click() {
-    const x = load()
-    console.log(x);
-    if (x) {
-      document.body.outerHTML = x
-    } else {
-      console.log("no data");
-    }
+    // const x = scene.load()
+    // console.log(x);
+    // if (x) {
+    //   document.body.outerHTML = x
+    // } else {
+    //   console.log("no data");
+    // }
   }
 </script>
 
@@ -34,14 +27,11 @@
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
-<button on:click="{save}">save</button>
+<button on:click="{handleButton1Click}">save</button>
 <button on:click="{handleButton2Click}">load</button>
-<button on:click="{resetSceneStorage}">reset</button>
+<button on:click="{handleButton2Click}">reset</button>
 
-<Object></Object>
-<Text></Text>
-<Reference></Reference>
-
+<Scene></Scene>
 
 <style>
 </style>
