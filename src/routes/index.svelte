@@ -1,5 +1,6 @@
 <script>
   import Scene from "../components/scene.svelte";
+  import Options from "../components/options.svelte";
   import { MyStorageManager } from "../storageManager.js";
 
   // const scene = new Scene()
@@ -23,6 +24,11 @@
 <svelte:head>
 	<title>Welcome</title>
 </svelte:head>
+
+<Options pos="TopLeft"></Options>
+<Options pos="TopRight"></Options>
+<Options pos="BottomLeft"></Options>
+<Options pos="BottomRight"></Options>
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
