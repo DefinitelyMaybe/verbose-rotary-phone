@@ -1,5 +1,5 @@
 <script>
-  import Scene from "../components/scene.svelte";
+  import Blob from "../components/blob.svelte";
   import Options from "../components/options.svelte";
   import { MyStorageManager } from "../storageManager.js";
 
@@ -7,7 +7,8 @@
   const storage = new MyStorageManager()
 
   function handleButton1Click() {
-    
+    console.log("hello world click");
+
   }
 
   function handleButton2Click() {
@@ -22,22 +23,12 @@
 </script>
 
 <svelte:head>
-	<title>Welcome</title>
+	<title>Blobit</title>
 </svelte:head>
 
-<Options pos="TopLeft"></Options>
-<Options pos="TopRight"></Options>
-<Options pos="BottomLeft"></Options>
-<Options pos="BottomRight"></Options>
+<Options pos="TopLeft" on:click="{handleButton1Click}">Hamburger/Options/Setup</Options>
+<Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
+<Options pos="BottomLeft">Tool</Options>
+<Options pos="BottomRight">Add</Options>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<button on:click="{handleButton1Click}">save</button>
-<button on:click="{handleButton2Click}">load</button>
-<button on:click="{handleButton2Click}">reset</button>
-
-<Scene></Scene>
-
-<style>
-</style>
+<Blob></Blob>
