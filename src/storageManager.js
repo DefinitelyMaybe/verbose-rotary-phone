@@ -4,6 +4,7 @@ export class MyStorageManager {
     this.scenes = new Map()
     // sceneid -> "scene-[sceneid]"
     // 0:"scene-0"
+    // scenes.get(), scenes.set(), scenes.delete()
   }
 
   setStoredScene() {
