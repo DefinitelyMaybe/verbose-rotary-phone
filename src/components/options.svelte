@@ -3,20 +3,24 @@
 </script>
 
 {#if pos == "TopLeft"}
-  <nav class="TopLeft">
-    PlaceHolder Navbar
+  <nav class="TopLeft"
+    on:click>
+    <slot></slot>
   </nav>
 {:else if pos == "TopRight"}
-  <nav class="TopRight">
-    PlaceHolder Navbar
+  <nav class="TopRight"
+    on:click>
+    <slot></slot>
   </nav>
 {:else if pos == "BottomLeft"}
-  <nav class="BottomLeft">
-    PlaceHolder Navbar
+  <nav class="BottomLeft"
+    on:click>
+    <slot></slot>
   </nav>
 {:else}
-  <nav class="BottomRight">
-    PlaceHolder Navbar
+  <nav class="BottomRight"
+    on:click>
+    <slot></slot>
   </nav>
 {/if}
 
@@ -29,6 +33,7 @@
 		width: var(--width);
 		height: var(--height);
     cursor: pointer;
+    /* text-overflow: clip; */
   }
 
   nav.TopLeft {

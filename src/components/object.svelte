@@ -14,7 +14,8 @@
 <div class="box" use:pannable
   on:panmove={handlePanMove}
   style="transform:
-  translate({x}px,{y}px)">
+  translate({x}px,{y}px)"
+  on:click>
   <slot>{name}</slot>
 </div>
 
