@@ -5,6 +5,8 @@
   import { onMount } from "svelte";
 
   const componentMap = new Map()
+  // this could be extended in future i.e.
+  // extended scenes with custom objects?
   // function initComponentMapping() {
   componentMap.set("Text", Text)
   componentMap.set("Object", Object)
