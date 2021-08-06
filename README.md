@@ -16,6 +16,7 @@ Making a concept re-creation environment.
 
 - mobile first -> most people have a mobile in pocket, ease of access/use
   - double tap to create
+- pointer events
 
 Open-Source clientside app here we come.
 
