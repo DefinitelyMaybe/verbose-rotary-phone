@@ -14,6 +14,9 @@ Making a concept re-creation environment.
 - Saving/Loading
 - Forking/Merging
 
+- mobile first -> most people have a mobile in pocket, ease of access/use
+  - double tap to create
+
 Open-Source clientside app here we come.
 
 TODO:
