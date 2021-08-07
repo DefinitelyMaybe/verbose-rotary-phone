@@ -2,27 +2,11 @@
   export let pos = ""
 </script>
 
-{#if pos == "TopLeft"}
-  <nav class="TopLeft"
-    on:click>
-    <slot></slot>
-  </nav>
-{:else if pos == "TopRight"}
-  <nav class="TopRight"
-    on:click>
-    <slot></slot>
-  </nav>
-{:else if pos == "BottomLeft"}
-  <nav class="BottomLeft"
-    on:click>
-    <slot></slot>
-  </nav>
-{:else}
-  <nav class="BottomRight"
-    on:click>
-    <slot></slot>
-  </nav>
-{/if}
+
+<nav class="{pos}"
+  on:click>
+  <slot></slot>
+</nav>
 
 <style>
   nav {
