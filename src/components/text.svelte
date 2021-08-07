@@ -1,17 +1,19 @@
 <script>
   import Object from "./object.svelte";
-  let text = "Text placeholder"
+  export let text = "Text placeholder";
+  export let x;
+  export let y;
 </script>
 
-<Object>
+<Object {x} {y}>
   <textarea bind:value={text}></textarea>
 </Object>
 
 <style>
   textarea {
     font-size: x-large;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
   }
 </style>
