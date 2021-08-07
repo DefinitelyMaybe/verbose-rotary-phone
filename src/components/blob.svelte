@@ -2,7 +2,7 @@
   import Text from "./text.svelte";
   import Object from "./object.svelte";
   import Reference from "./reference.svelte";
-  import { onMount } from "svelte";
+  // import { onMount } from "svelte";
 
   const componentMap = new Map()
   // this could be extended in future i.e.
@@ -13,15 +13,20 @@
   componentMap.set("Reference", Reference)
   // }
 
-  let element;
+  // let element;
+  export let scene = 0;
   let objects = [
     {
       component: "Text",
-      text:"Dummy text"
+      props: {
+        text:"Dummy text",
+        x: -100,
+        y: -100,
+      }
     },
   ]
 
-  onMount(() => {
+  // onMount(() => {
     // const dummyobject = [
     //   {"Text":"DummyText"},
     // ]
@@ -31,17 +36,17 @@
     // Was there a last scene in use?
     // const data = fetch(dummyURL)
     // loadScene()
-  })
+  // })
 
-  function loadScene(scene) {
+  // function loadScene(scene) {
     // have I been given a scene to render
     // trigger an update of sveltes each block
-  }
+  // }
 
 </script>
 
-<div bind:this="{element}">
+<div>
   {#each objects as obj}
-    <svelte:component this={componentMap.get(obj.component)}></svelte:component>
+    <svelte:component this={componentMap.get(obj.component)} {...obj.props}></svelte:component>
   {/each}
 </div>
