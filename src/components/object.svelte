@@ -1,22 +1,23 @@
 <script>
   import { pannable } from "../pannable.js";
   // identifier/url
-  let name = "Object-PlaceHolder"
-  let x = 0
-  let y = 0
+  // let name = "Object-PlaceHolder"
+  export let x = 0
+  export let y = 0
 
-	function handlePanMove(event) {
+	function handleMove(event) {
 		x = x + event.detail.dx,
 		y = y + event.detail.dy
 	}
 </script>
 
-<div class="box" use:pannable
-  on:panmove={handlePanMove}
+<div class="box" 
+  use:pannable
   style="transform:
   translate({x}px,{y}px)"
-  on:click>
-  <slot>{name}</slot>
+  on:panmove={handleMove}
+  on:pointerdown>
+  <slot></slot>
 </div>
 
 <style>
