@@ -3,7 +3,7 @@
   import Options from "../components/options.svelte";
   import { MyStorageManager } from "../storageManager.js";
 
-  // const scene = new Scene()
+  let blob
   const storage = new MyStorageManager()
 
   function handleButton1Click() {
@@ -11,7 +11,7 @@
 
   }
 
-  function handleButton2Click() {
+  // function handleButton2Click() {
     // const x = scene.load()
     // console.log(x);
     // if (x) {
@@ -19,7 +19,7 @@
     // } else {
     //   console.log("no data");
     // }
-  }
+  // }
 </script>
 
 <svelte:head>
