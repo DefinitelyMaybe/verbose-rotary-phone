@@ -1,24 +1,32 @@
 <script>
   import Blob from "../components/blob.svelte";
   import { MyStorageManager } from "../storageManager.js";
+  // import { createEventDispatcher } from "svelte";
+  // const dispatch = createEventDispatcher()
 
-  let blob
+  let objects;
   const storage = new MyStorageManager()
 
-  function handleButton1Click() {
-    console.log("hello world click");
-
+  function handleSave() {
+    console.log("save");
   }
 
-  // function handleButton2Click() {
-    // const x = scene.load()
-    // console.log(x);
-    // if (x) {
-    //   document.body.outerHTML = x
-    // } else {
-    //   console.log("no data");
-    // }
-  // }
+  function handleLoad() {
+    console.log("load");
+  }
+
+  function handleCreate() {
+    // objects = objects.concat({
+    //   component: "Text",
+    //   props: {
+    //     text:"Dummy text",
+    //     x: -100,
+    //     y: -100,
+    //   }
+    // })
+  }
+
+  $: console.log(objects);
 </script>
 
 <svelte:head>
@@ -29,6 +37,8 @@
 <Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
 <Options pos="BottomLeft">Tool</Options>
 <Options pos="BottomRight">Add</Options> -->
-<button on:pointerdown="{handleButton1Click}">Some text</button>
+<button on:pointerdown="{handleSave}">Save</button>
+<button on:pointerdown="{handleLoad}">Load</button>
+<button on:pointerdown="{handleCreate}">create</button>
 
-<Blob id={0}></Blob>
+<Blob id={10} bind:objects></Blob>

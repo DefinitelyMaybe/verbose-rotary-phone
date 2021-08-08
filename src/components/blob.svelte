@@ -15,7 +15,7 @@
 
   // let element;
   export let id = 0;
-  let objects = [
+  export let objects = [
     {
       component: "Text",
       props: {
@@ -25,18 +25,6 @@
       }
     },
   ]
-
-  function save() {
-    return {
-      id:id,
-      objects:objects,
-    }
-  }
-
-  function load(scene) {
-    id = scene.id
-    objects = scene.objects
-  }
 
   // onMount(() => {
     // const dummyobject = [
@@ -57,8 +45,6 @@
 
 </script>
 
-<div>
-  {#each objects as obj}
-    <svelte:component this={componentMap.get(obj.component)} {...obj.props}></svelte:component>
-  {/each}
-</div>
+{#each objects as obj}
+  <svelte:component this={componentMap.get(obj.component)} {...obj.props}></svelte:component>
+{/each}
