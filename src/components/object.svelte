@@ -1,23 +1,32 @@
 <script>
-  import { pannable } from "../pannable.js";
-  // identifier/url
-  // let name = "Object-PlaceHolder"
+  import { fade } from 'svelte/transition';
+
   export let x = 0
   export let y = 0
+  export let moveable = true;
+  export let showOptions = false;
 
-	function handleMove(event) {
+	async function handleMove(event) {
 		x = x + event.detail.dx,
 		y = y + event.detail.dy
 	}
+  
 </script>
 
-<div class="box" 
-  use:pannable
+<div class="box"
   style="transform:
   translate({x}px,{y}px)"
   on:panmove={handleMove}
-  on:pointerdown>
-  <slot></slot>
+  on:pointerover="{() => {showOptions = true}}"
+  on:pointerleave="{() => {showOptions = false}}">
+  <slot name="content"></slot>
+  {#if showOptions}
+    <nav transition:fade>
+      {#if moveable}
+        <li>move</li>
+      {/if}
+    </nav>
+  {/if}
 </div>
 
 <style>
@@ -26,15 +35,9 @@
   }
 
   .box {
-    --width: 100px;
-		--height: 100px;
 		position: absolute;
-		width: var(--width);
-		height: var(--height);
-		left: calc(50% - var(--width) / 2);
-		top: calc(50% - var(--height) / 2);
-		border-radius: 4px;
-		background-color: hsl(194, 80%, 36%);
+		left: calc(50%);
+		top: calc(50%);
 		cursor: move;
   }
 </style>

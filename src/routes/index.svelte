@@ -1,6 +1,5 @@
 <script>
   import Blob from "../components/blob.svelte";
-  import Options from "../components/options.svelte";
   import { MyStorageManager } from "../storageManager.js";
 
   let blob
@@ -26,9 +25,10 @@
 	<title>Blobit</title>
 </svelte:head>
 
-<Options pos="TopLeft" on:click="{handleButton1Click}">Hamburger/Options/Setup</Options>
+<!-- <Options pos="TopLeft" on:click="{handleButton1Click}">Hamburger/Options/Setup</Options>
 <Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
 <Options pos="BottomLeft">Tool</Options>
-<Options pos="BottomRight">Add</Options>
+<Options pos="BottomRight">Add</Options> -->
+<button on:pointerdown="{handleButton1Click}">Some text</button>
 
-<Blob></Blob>
+<Blob id={0}></Blob>

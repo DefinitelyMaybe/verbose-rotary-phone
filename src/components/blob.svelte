@@ -14,7 +14,7 @@
   // }
 
   // let element;
-  export let scene = 0;
+  export let id = 0;
   let objects = [
     {
       component: "Text",
@@ -25,6 +25,18 @@
       }
     },
   ]
+
+  function save() {
+    return {
+      id:id,
+      objects:objects,
+    }
+  }
+
+  function load(scene) {
+    id = scene.id
+    objects = scene.objects
+  }
 
   // onMount(() => {
     // const dummyobject = [
