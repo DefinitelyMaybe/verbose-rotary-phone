@@ -1,10 +1,13 @@
 <script>
   import Blob from "../components/blob.svelte";
   import { MyStorageManager } from "../storageManager.js";
-  // import { createEventDispatcher } from "svelte";
-  // const dispatch = createEventDispatcher()
+  import { createEventDispatcher } from "svelte";
+  
+  const dispatch = createEventDispatcher()
 
   let objects;
+  // sync with cloud
+  // and store in local storage
   const storage = new MyStorageManager()
 
   function handleSave() {
@@ -15,18 +18,12 @@
     console.log("load");
   }
 
-  function handleCreate() {
-    // objects = objects.concat({
-    //   component: "Text",
-    //   props: {
-    //     text:"Dummy text",
-    //     x: -100,
-    //     y: -100,
-    //   }
-    // })
+  function initSave() {
+    console.log("init save");
+    dispatchEvent(new Event("initSave"))
   }
 
-  $: console.log(objects);
+  // $: console.log(objects);
 </script>
 
 <svelte:head>
@@ -37,8 +34,8 @@
 <Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
 <Options pos="BottomLeft">Tool</Options>
 <Options pos="BottomRight">Add</Options> -->
-<button on:pointerdown="{handleSave}">Save</button>
+<button on:pointerdown="{initSave}">Save</button>
 <button on:pointerdown="{handleLoad}">Load</button>
-<button on:pointerdown="{handleCreate}">create</button>
+<!-- <button on:pointerdown="{handleCreate}">create</button> -->
 
-<Blob id={10} bind:objects></Blob>
+<Blob id={10} bind:objects on:save={handleSave}></Blob>

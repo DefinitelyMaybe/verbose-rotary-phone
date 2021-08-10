@@ -2,8 +2,9 @@
   import Text from "./text.svelte";
   import Object from "./object.svelte";
   import Reference from "./reference.svelte";
-  // import { onMount } from "svelte";
-
+  import { createEventDispatcher, onMount } from "svelte";
+  
+  const dispatch = createEventDispatcher()
   const componentMap = new Map()
   // this could be extended in future i.e.
   // extended scenes with custom objects?
@@ -13,38 +14,36 @@
   componentMap.set("Reference", Reference)
   // }
 
-  // let element;
+  let blob;
   export let id = 0;
   export let objects = [
     {
-      component: "Text",
+      type: "Text",
       props: {
         text:"Dummy text",
         x: -100,
         y: -100,
-      }
+      },
+      component:undefined
     },
   ]
 
-  // onMount(() => {
-    // const dummyobject = [
-    //   {"Text":"DummyText"},
-    // ]
-    // const dummyURL = URL.createObjectURL(dummyobject)
-    // whenever a scene component is mounted
-    // Once the scene has mounted, we should figure out the data that goes with it
-    // Was there a last scene in use?
-    // const data = fetch(dummyURL)
-    // loadScene()
-  // })
+  export function save() {
+    console.log("hello from save");
+    // 
+    console.log(objects);
+  }
 
-  // function loadScene(scene) {
-    // have I been given a scene to render
-    // trigger an update of sveltes each block
-  // }
+  onMount(() => {
+    addEventListener("initSave", () => {
+      save()
+    })
+  })
 
 </script>
 
-{#each objects as obj}
-  <svelte:component this={componentMap.get(obj.component)} {...obj.props}></svelte:component>
-{/each}
+<div bind:this="{blob}">
+  {#each objects as obj}
+    <svelte:component this={componentMap.get(obj.type)} {...obj.props} bind:this={obj.component}></svelte:component>
+  {/each}
+</div>

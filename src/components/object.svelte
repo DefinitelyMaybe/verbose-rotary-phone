@@ -2,8 +2,9 @@
   import { pannable } from "../pannable.js";
   import { fade } from 'svelte/transition';
 
-  export let x = 0
-  export let y = 0
+  export let bobj;
+  export let x = 0;
+  export let y = 0;
   export let moveable = true;
   export let deleteable = true;
   export let showOptions = false;
@@ -18,6 +19,7 @@
 <div class="box"
   style="transform:
   translate({x}px,{y}px)"
+  bind:this={bobj}
   on:panmove={handleMove}
   use:pannable
   on:pointerover="{() => {showOptions = true}}"
