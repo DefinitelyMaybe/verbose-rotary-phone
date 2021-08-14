@@ -51,10 +51,13 @@
 <button on:pointerdown="">test</button>
 
 {#if showScenes}
-<select>
-  {#each storedScenes as scene}
-    <option>test {scene}</option>
-  {/each}
-</select>
+<form>
+  <select>
+    {#each storedScenes as scene}
+      <option value="{scene}">{scene}</option>
+    {/each}
+  </select>
+  <input type="submit" form="">
+</form>
 {/if}
 <Blob id={10} bind:objects on:save={handleSave}></Blob>
