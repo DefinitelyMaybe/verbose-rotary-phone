@@ -51,10 +51,10 @@
 <button on:pointerdown="">test</button>
 
 {#if showScenes}
-<ul>
+<select>
   {#each storedScenes as scene}
-    <li>test {scene}</li>
+    <option>test {scene}</option>
   {/each}
-</ul>
+</select>
 {/if}
 <Blob id={10} bind:objects on:save={handleSave}></Blob>
