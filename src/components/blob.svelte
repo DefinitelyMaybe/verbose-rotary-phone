@@ -2,7 +2,7 @@
   import Text from "./text.svelte";
   import Object from "./object.svelte";
   import Reference from "./reference.svelte";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, onDestroy } from "svelte";
   
   const dispatch = createEventDispatcher()
   const componentMap = new Map()
@@ -13,8 +13,7 @@
   componentMap.set("Object", Object)
   componentMap.set("Reference", Reference)
   // }
-
-  let blob;
+  
   export let id = 0;
   export let objects = [
     {
@@ -30,19 +29,28 @@
 
   export function save() {
     console.log("hello from save");
-    // 
-    console.log(objects);
+    dispatch("save", {
+      id,
+      objects
+    })
+    // console.log(objects);
   }
 
   onMount(() => {
-    addEventListener("initSave", () => {
-      save()
-    })
+    addEventListener("initSave", save)
+  })
+
+  onDestroy(() => {
+    try {
+      removeEventListener("initSave", save) 
+    } catch (error) {
+      console.log(error);
+    }
   })
 
 </script>
 
-<div bind:this="{blob}">
+<div>
   {#each objects as obj}
     <svelte:component this={componentMap.get(obj.type)} {...obj.props} bind:this={obj.component}></svelte:component>
   {/each}
