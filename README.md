@@ -2,35 +2,30 @@
 
 Making a concept re-creation environment.
 
-- Text
-- Drawing
-- Images
-- Video
-
-- Links to other concepts/files
-- Links to components on the same page
-
-
-- Saving/Loading
-- Forking/Merging
-
-- mobile first -> most people have a mobile in pocket, ease of access/use
-  - double tap to create
-- pointer events
+- [x] Text
+  - [ ] Drawing
+  - [ ] Images
+  - [ ] Video
+- [x] Saving/Loading
+- [ ] Links to other concepts/files
+- [ ] Links to components on the same page
+- [ ] Forking/Merging
+- [ ] mobile first -> most people have a mobile in pocket, ease of access/use
+  - [ ] double tap to create
+- [ ] pointer events
 
 Open-Source clientside app here we come.
 
 TODO:
 
-1. text-objects
-   1. links to the objects
-   2. app transitions to object
-      1. jump within page
-      2. fades out/loading/in to another page
-2. storage & storage navigation
+ 1. links to the objects
+ 2. app transitions to object
+    1. jump within page
+    2. fades out/loading/in to another page
+1. storage & storage navigation
    1. local storage save & load
    2. navigator of files
-3. service worker
+2. service worker
    1. intercept connections to route towards local-storage
 
 The initial part of displaying a files history is the git command `git log`
