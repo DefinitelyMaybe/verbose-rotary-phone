@@ -27,22 +27,43 @@
     },
   ]
 
-  export function save() {
-    console.log("hello from save");
-    dispatch("save", {
-      id,
-      objects
+  function save() {
+    // console.log("hello from save");
+    const objectArray = []
+    objects.forEach( (el) => {
+      if (el != null) {
+        if (el.component) {
+          objectArray.push(el.component.toJSON()) 
+        }
+      }
     })
-    // console.log(objects);
+    dispatch("sceneToJSON", {
+      id,
+      objects:objectArray
+    })
+  }
+
+  function load(event) {
+    // console.log(id);
+    const newObjects = []
+    event.detail.forEach(el => {
+      if (!el.component) {
+        el.component = undefined
+      }
+      newObjects.push(el)
+    });
+    objects = newObjects
   }
 
   onMount(() => {
-    addEventListener("initSave", save)
+    addEventListener("save", save)
+    addEventListener("load", load)
   })
 
   onDestroy(() => {
     try {
-      removeEventListener("initSave", save) 
+      removeEventListener("save", save)
+      removeEventListener("load", load)
     } catch (error) {
       console.log(error);
     }
@@ -50,8 +71,6 @@
 
 </script>
 
-<div>
-  {#each objects as obj}
-    <svelte:component this={componentMap.get(obj.type)} {...obj.props} bind:this={obj.component}></svelte:component>
-  {/each}
-</div>
+{#each objects as obj}
+  <svelte:component this={componentMap.get(obj.type)} {...obj.props} bind:this={obj.component}></svelte:component>
+{/each}

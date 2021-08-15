@@ -13,6 +13,10 @@
 		x = x + event.detail.dx,
 		y = y + event.detail.dy
 	}
+
+  export function toJSON() {
+    return {}
+  }
   
 </script>
 

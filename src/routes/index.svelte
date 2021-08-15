@@ -4,38 +4,20 @@
   
   // const dispatch = createEventDispatcher()
 
-  let objects;
+  let selectedScene;
+  let currentScene = 10;
   let storedScenes = []
   let showScenes = false
   // sync with cloud
   // and store in local storage
 
-  function handleSave(event) {
-    // console.log("save");
-    // console.log(event.detail.objects);
-    const { id, objects } = event.detail
-    localStorage.setItem(id, JSON.stringify(objects))
-  }
-
-  function handleLoad() {
-    // console.log("load");
-    // update stored Scenes list
-    storedScenes = getCurrentKeys()
-    showScenes = true
-
-    const id = 10
-    const data = localStorage.getItem(`${id}`)
-    objects = JSON.parse(data);
-  }
-
-  function getCurrentKeys() {
+  function getCurrentStorageKeys() {
     const sceneKeys = []
     for (let i = 0; i < localStorage.length; i++) {
       sceneKeys.push(localStorage.key(i));
     }
     return sceneKeys
   }
-  // $: console.log(objects);
 </script>
 
 <svelte:head>
@@ -46,18 +28,34 @@
 <Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
 <Options pos="BottomLeft">Tool</Options>
 <Options pos="BottomRight">Add</Options> -->
-<button on:pointerdown="{() => dispatchEvent(new Event("initSave"))}">Save</button>
-<button on:pointerdown="{handleLoad}">Load</button>
-<button on:pointerdown="">test</button>
+
+<button on:pointerup="{() => dispatchEvent(new Event("save"))}">Save</button>
+<button on:pointerup="{() => {
+  storedScenes = getCurrentStorageKeys()
+  showScenes = true
+  }}">Load</button>
+<button on:pointerup="{() => {localStorage.clear()}}">clear Storage</button>
 
 {#if showScenes}
 <form>
-  <select>
+  <select bind:value={selectedScene}>
     {#each storedScenes as scene}
-      <option value="{scene}">{scene}</option>
+      <option value={scene}>{scene}</option>
     {/each}
   </select>
-  <input type="submit" form="">
+  <input type="submit" form="" on:pointerup="{() => {
+    showScenes = false
+    const data = localStorage.getItem(`${selectedScene}`)
+    dispatchEvent(new CustomEvent("load", {
+      detail:JSON.parse(data),
+    }))
+  }}">
 </form>
 {/if}
-<Blob id={10} bind:objects on:save={handleSave}></Blob>
+
+<Blob bind:id={currentScene} on:sceneToJSON={(event) => {
+  const { id, objects } = event.detail
+  // console.log("check out objects");
+  // console.log(objects);
+  localStorage.setItem(id, JSON.stringify(objects))
+}}></Blob>

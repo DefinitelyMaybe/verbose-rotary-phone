@@ -4,9 +4,21 @@
   export let text = "Text placeholder";
   export let x;
   export let y;
+
+  export function toJSON() {
+    return {
+      type: "Text",
+      props: {
+        x,
+        y,
+        text
+      },
+      component:undefined,
+    }
+  }
 </script>
 
-<Object {x} {y} >
+<Object bind:x bind:y >
   <textarea bind:value={text} slot="content"></textarea>
 </Object>
 
