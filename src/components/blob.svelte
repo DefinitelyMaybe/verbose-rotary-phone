@@ -14,7 +14,7 @@
   componentMap.set("Reference", Reference)
   // }
   
-  export let id = 0;
+  export let id;
   export let objects = [
     {
       type: "Text",

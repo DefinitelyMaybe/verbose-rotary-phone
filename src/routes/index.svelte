@@ -5,7 +5,7 @@
   // const dispatch = createEventDispatcher()
 
   let selectedScene;
-  let currentScene = 10;
+  let currentScene = "hello world";
   let storedScenes = []
   let showScenes = false
   // sync with cloud
@@ -24,17 +24,16 @@
 	<title>Blobit</title>
 </svelte:head>
 
-<!-- <Options pos="TopLeft" on:click="{handleButton1Click}">Hamburger/Options/Setup</Options>
-<Options pos="TopRight">Navigate/Save/Load/Fork/Merge</Options>
-<Options pos="BottomLeft">Tool</Options>
-<Options pos="BottomRight">Add</Options> -->
+<label for="">title</label><input type="text" bind:value="{currentScene}">
 
 <button on:pointerup="{() => dispatchEvent(new Event("save"))}">Save</button>
 <button on:pointerup="{() => {
   storedScenes = getCurrentStorageKeys()
   showScenes = true
   }}">Load</button>
-<button on:pointerup="{() => {localStorage.clear()}}">clear Storage</button>
+<button on:pointerup="{() => {
+  localStorage.clear()
+}}">clear Storage</button>
 
 {#if showScenes}
 <form>
@@ -50,12 +49,14 @@
       detail:JSON.parse(data),
     }))
   }}">
+  <button on:pointerup="{() => {
+    showScenes = false
+    localStorage.removeItem(`${selectedScene}`)
+  }}">delete</button>
 </form>
 {/if}
 
 <Blob bind:id={currentScene} on:sceneToJSON={(event) => {
   const { id, objects } = event.detail
-  // console.log("check out objects");
-  // console.log(objects);
   localStorage.setItem(id, JSON.stringify(objects))
 }}></Blob>
