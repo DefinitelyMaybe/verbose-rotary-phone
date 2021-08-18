@@ -2,17 +2,20 @@
 
 Making a concept re-creation environment.
 
-- [x] Text
+
+- [ ] Tools within environment
+  - [x] Text
   - [ ] Drawing
   - [ ] Images
   - [ ] Video
+  - [ ] Links to other concepts/files
+  - [ ] Links to components on the same page
 - [x] Saving/Loading
-- [ ] Links to other concepts/files
-- [ ] Links to components on the same page
-- [ ] Forking/Merging
-- [ ] mobile first -> most people have a mobile in pocket, ease of access/use
+  - [ ] [folder/project nav](https://svelte.dev/examples#svelte-self)
+  - [ ] Forking/Merging
+- [ ] Useability (mobiles)
   - [ ] double tap to create
-- [ ] pointer events
+  - [ ] initial tutorial
 
 Open-Source clientside app here we come.
 

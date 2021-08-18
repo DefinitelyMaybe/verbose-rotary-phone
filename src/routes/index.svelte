@@ -24,6 +24,10 @@
 	<title>Blobit</title>
 </svelte:head>
 
+<svelte:body on:dblclick="{(event) => {
+    console.log(event.x, event.y);
+  }}"></svelte:body>
+
 <label for="">title</label><input type="text" bind:value="{currentScene}">
 
 <button on:pointerup="{() => dispatchEvent(new Event("save"))}">Save</button>
@@ -56,7 +60,18 @@
 </form>
 {/if}
 
-<Blob bind:id={currentScene} on:sceneToJSON={(event) => {
-  const { id, objects } = event.detail
-  localStorage.setItem(id, JSON.stringify(objects))
-}}></Blob>
+<Blob bind:id={currentScene} on:sceneToJSON="{(event) => {
+    const { id, objects } = event.detail
+    localStorage.setItem(id, JSON.stringify(objects))
+  }}"></Blob>
+
+<style>
+  :global(html) {
+    width: 100%;
+    height: 100%;
+  }
+  :global(body) {
+    width: 100%;
+    height: 100%;
+  }
+</style>

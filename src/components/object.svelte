@@ -6,12 +6,16 @@
   export let x = 0;
   export let y = 0;
   export let moveable = true;
+  let moving = false;
   export let deleteable = true;
   export let showOptions = false;
 
 	async function handleMove(event) {
-		x = x + event.detail.dx,
-		y = y + event.detail.dy
+    if (moving) {
+      console.log("should move?");
+      x = x + event.detail.dx,
+		  y = y + event.detail.dy 
+    }
 	}
 
   export function toJSON() {
@@ -21,22 +25,29 @@
 </script>
 
 <div class="box"
-  style="transform:
-  translate({x}px,{y}px)"
-  on:panmove={handleMove}
-  use:pannable
+  style="transform:translate({x}px,{y}px)"
   on:pointerover="{() => {showOptions = true}}"
   on:pointerleave="{() => {showOptions = false}}">
   <slot name="content"></slot>
   {#if showOptions}
-    <nav transition:fade>
+    <ul transition:fade>
       {#if moveable}
-        <li>move</li>
+        <li><button class="moveable" on:pointerdown="{() => {
+            console.log("down");
+            moving = true
+          }}"
+          on:pointermove="{handleMove}"
+          on:pointerout="{() => {
+              console.log("up");
+              moving = false}
+            }">move</button></li>
       {/if}
       {#if deleteable}
-        <li>delete</li>
+        <li><button on:pointerup="{() => {
+          console.log("delete!");
+        }}">delete</button></li>
       {/if}
-    </nav>
+    </ul>
   {/if}
 </div>
 
@@ -49,6 +60,8 @@
 		position: absolute;
 		left: calc(50%);
 		top: calc(50%);
-		/* cursor: move; */
+  }
+  .moveable {
+    cursor: move;
   }
 </style>

@@ -2,7 +2,7 @@ export function pannable(node) {
 	let x;
 	let y;
 
-	function handleMousedown(event) {
+	async function handlePointerdown(event) {
 		x = event.clientX;
 		y = event.clientY;
 
@@ -10,11 +10,11 @@ export function pannable(node) {
 			detail: { x, y }
 		}));
 
-		window.addEventListener('mousemove', handleMousemove);
-		window.addEventListener('mouseup', handleMouseup);
+		window.addEventListener('pointermove', handlePointerMove);
+		window.addEventListener('pointerup', handlePointerup);
 	}
 
-	function handleMousemove(event) {
+	async function handlePointerMove(event) {
 		const dx = event.clientX - x;
 		const dy = event.clientY - y;
 		x = event.clientX;
@@ -25,7 +25,7 @@ export function pannable(node) {
 		}));
 	}
 
-	function handleMouseup(event) {
+	async function handlePointerup(event) {
 		x = event.clientX;
 		y = event.clientY;
 
@@ -33,15 +33,15 @@ export function pannable(node) {
 			detail: { x, y }
 		}));
 
-		window.removeEventListener('mousemove', handleMousemove);
-		window.removeEventListener('mouseup', handleMouseup);
+		window.removeEventListener('pointermove', handlePointerMove);
+		window.removeEventListener('pointerup', handlePointerup);
 	}
 
-	node.addEventListener('mousedown', handleMousedown);
+	node.addEventListener('pointerdown', handlePointerdown);
 
 	return {
 		destroy() {
-			node.removeEventListener('mousedown', handleMousedown);
+			node.removeEventListener('pointerdown', handlePointerdown);
 		}
 	};
 }

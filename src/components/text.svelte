@@ -2,6 +2,8 @@
   import Object from "./object.svelte";
   // export let bobj;
   export let text = "Text placeholder";
+  let width = 100;
+  let height = 100;
   export let x;
   export let y;
 
