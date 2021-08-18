@@ -1,8 +1,5 @@
 <script>
   import Blob from "../components/blob.svelte";
-  // import { createEventDispatcher } from "svelte";
-  
-  // const dispatch = createEventDispatcher()
 
   let selectedScene;
   let currentScene = "hello world";
@@ -24,9 +21,9 @@
 	<title>Blobit</title>
 </svelte:head>
 
-<svelte:body on:dblclick="{(event) => {
+<!-- <svelte:body on:pointerup="{(event) => {
     console.log(event.x, event.y);
-  }}"></svelte:body>
+  }}"></svelte:body> -->
 
 <label for="">title</label><input type="text" bind:value="{currentScene}">
 

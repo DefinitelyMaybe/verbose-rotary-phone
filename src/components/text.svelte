@@ -2,8 +2,8 @@
   import Object from "./object.svelte";
   // export let bobj;
   export let text = "Text placeholder";
-  let width = 100;
-  let height = 100;
+  export let width = 100;
+  export let height = 100;
   export let x;
   export let y;
 
@@ -13,6 +13,8 @@
       props: {
         x,
         y,
+        width,
+        height,
         text
       },
       component:undefined,
@@ -26,9 +28,7 @@
 
 <style>
   textarea {
-    font-size: 2em;
-    width: 5em;
-    height: 5em;
+    font-size: 1em;
     /* border-style: hidden; */
   }
 </style>

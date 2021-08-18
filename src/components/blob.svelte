@@ -5,14 +5,11 @@
   import { createEventDispatcher, onMount, onDestroy } from "svelte";
   
   const dispatch = createEventDispatcher()
+
   const componentMap = new Map()
-  // this could be extended in future i.e.
-  // extended scenes with custom objects?
-  // function initComponentMapping() {
   componentMap.set("Text", Text)
   componentMap.set("Object", Object)
   componentMap.set("Reference", Reference)
-  // }
   
   export let id;
   export let objects = [
@@ -28,7 +25,6 @@
   ]
 
   function save() {
-    // console.log("hello from save");
     const objectArray = []
     objects.forEach( (el) => {
       if (el != null) {
@@ -44,7 +40,6 @@
   }
 
   function load(event) {
-    // console.log(id);
     const newObjects = []
     event.detail.forEach(el => {
       if (!el.component) {

@@ -1,5 +1,4 @@
 <script>
-  import { pannable } from "../pannable.js";
   import { fade } from 'svelte/transition';
 
   // export let bobj;
@@ -12,9 +11,8 @@
 
 	async function handleMove(event) {
     if (moving) {
-      console.log("should move?");
-      x = x + event.detail.dx,
-		  y = y + event.detail.dy 
+      x = x + event.movementX
+		  y = y + event.movementY 
     }
 	}
 
@@ -27,18 +25,19 @@
 <div class="box"
   style="transform:translate({x}px,{y}px)"
   on:pointerover="{() => {showOptions = true}}"
-  on:pointerleave="{() => {showOptions = false}}">
+  on:pointerleave="{() => {
+    showOptions = false
+    moving = false
+  }}">
   <slot name="content"></slot>
   {#if showOptions}
     <ul transition:fade>
       {#if moveable}
         <li><button class="moveable" on:pointerdown="{() => {
-            console.log("down");
             moving = true
           }}"
           on:pointermove="{handleMove}"
-          on:pointerout="{() => {
-              console.log("up");
+          on:pointerup="{() => {
               moving = false}
             }">move</button></li>
       {/if}
