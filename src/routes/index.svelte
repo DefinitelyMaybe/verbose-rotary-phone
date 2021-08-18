@@ -1,20 +1,20 @@
 <script>
-  import Blob from "../components/blob.svelte";
+import Blob from "../components/blob.svelte";
 
-  let selectedScene;
-  let currentScene = "hello world";
-  let storedScenes = []
-  let showScenes = false
-  // sync with cloud
-  // and store in local storage
+let selectedScene;
+let currentScene = "hello world";
+let storedScenes = []
+let showScenes = false
+// sync with cloud
+// and store in local storage
 
-  function getCurrentStorageKeys() {
-    const sceneKeys = []
-    for (let i = 0; i < localStorage.length; i++) {
-      sceneKeys.push(localStorage.key(i));
-    }
-    return sceneKeys
+function getCurrentStorageKeys() {
+  const sceneKeys = []
+  for (let i = 0; i < localStorage.length; i++) {
+    sceneKeys.push(localStorage.key(i));
   }
+  return sceneKeys
+}
 </script>
 
 <svelte:head>
@@ -32,9 +32,7 @@
   storedScenes = getCurrentStorageKeys()
   showScenes = true
   }}">Load</button>
-<button on:pointerup="{() => {
-  localStorage.clear()
-}}">clear Storage</button>
+<button on:pointerup="{() => localStorage.clear()}">clear Storage</button>
 
 {#if showScenes}
 <form>
@@ -46,6 +44,7 @@
   <input type="submit" form="" on:pointerup="{() => {
     showScenes = false
     const data = localStorage.getItem(`${selectedScene}`)
+    // console.log(JSON.parse(data));
     dispatchEvent(new CustomEvent("load", {
       detail:JSON.parse(data),
     }))
