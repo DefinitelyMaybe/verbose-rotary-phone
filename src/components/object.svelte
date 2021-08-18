@@ -6,6 +6,11 @@
   export let y = 0;
   export let moveable = true;
   let moving = false;
+  export let width = 100;
+  $: {
+    console.log(width);
+  }
+  export let height = 100;
   export let deleteable = true;
   export let showOptions = false;
 
@@ -23,11 +28,10 @@
 </script>
 
 <div class="box"
-  style="transform:translate({x}px,{y}px)"
+  style="transform:translate({x}px,{y}px);width:{width}px;height:{height}px"
   on:pointerover="{() => {showOptions = true}}"
   on:pointerleave="{() => {
     showOptions = false
-    moving = false
   }}">
   <slot name="content"></slot>
   {#if showOptions}
@@ -39,7 +43,10 @@
           on:pointermove="{handleMove}"
           on:pointerup="{() => {
               moving = false}
-            }">move</button></li>
+            }"
+          on:pointerleave="{() => {
+            moving = false}
+          }">move</button></li>
       {/if}
       {#if deleteable}
         <li><button on:pointerup="{() => {
@@ -51,9 +58,9 @@
 </div>
 
 <style>
-  :hover {
-    color: blue;
-  }
+  /* :hover {
+    background: grey;
+  } */
 
   .box {
 		position: absolute;

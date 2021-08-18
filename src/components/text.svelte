@@ -2,8 +2,8 @@
   import Object from "./object.svelte";
   // export let bobj;
   export let text = "Text placeholder";
-  export let width = 100;
-  export let height = 100;
+  export let width = 200;
+  export let height = 200;
   export let x;
   export let y;
 
@@ -20,10 +20,14 @@
       component:undefined,
     }
   }
+
+  async function handleResize(event) {
+    console.log(event);
+  }
 </script>
 
-<Object bind:x bind:y >
-  <textarea bind:value={text} slot="content"></textarea>
+<Object bind:x bind:y bind:width bind:height>
+  <textarea bind:value={text} slot="content" on:keyup="{handleResize}"></textarea>
 </Object>
 
 <style>
