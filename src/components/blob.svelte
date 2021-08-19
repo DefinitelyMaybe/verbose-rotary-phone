@@ -12,6 +12,7 @@ componentMap.set("Object", Object)
 componentMap.set("Reference", Reference)
 
 export let id;
+let selectedObj;
 export let objects = [
   {
     type: "Text",
@@ -81,6 +82,7 @@ onDestroy(() => {
       this={componentMap.get(obj.type)}
       {...obj.props}
       id={i}
+      selected="{selectedObj == i}"
       bind:this={obj.component}
       on:delete="{handleDelete}"></svelte:component>
   {/if}

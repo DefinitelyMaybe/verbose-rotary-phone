@@ -1,6 +1,5 @@
 <script>
 import { createEventDispatcher } from "svelte";
-import { fade } from 'svelte/transition';
 
 const dispatch = createEventDispatcher()
 
@@ -11,6 +10,7 @@ export let moveable = true;
 let moving = false;
 export let deleteable = true;
 export let showOptions = false;
+export let selected = false;
 
 async function handleMove(event) {
   if (moving) {
@@ -28,12 +28,10 @@ export function toJSON() {
 <div class="box"
   style="transform:translate({x}px,{y}px);"
   on:pointerover="{() => {showOptions = true}}"
-  on:pointerleave="{() => {
-    showOptions = false
-  }}">
+  on:pointerleave="{() => showOptions = false}">
   <slot name="content"></slot>
-  {#if showOptions}
-    <ul transition:fade>
+  {#if showOptions || selected}
+    <ul>
       {#if moveable}
         <li><button class="moveable" 
           on:pointerdown="{() => moving = true}"
