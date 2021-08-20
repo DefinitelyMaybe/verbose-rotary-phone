@@ -38,6 +38,7 @@ async function handleMove(event) {
 function handleResize () {
   // read width and save
   let w = parseInt(el.style.width.split("px")[0]);
+  // console.log(w);
   if (w < 100) {
     el.style.width = `100px`
     width = 100
@@ -62,7 +63,10 @@ function handleResize () {
   on:keyup="{handleResize}"
   on:pointerup="{handleResize}"
   on:pointerover="{() => showOptions = true}"
-  on:pointerleave="{() => showOptions = false}"></textarea>
+  on:pointerleave="{() => {
+    showOptions = false
+    handleResize()
+  }}"></textarea>
 
 <style>
   textarea {
@@ -70,6 +74,8 @@ function handleResize () {
     /* border-style: hidden; */
     overflow: hidden;
     resize: horizontal;
+    background-color: black;
+    color: white;
   }
   .box {
 		position: absolute;

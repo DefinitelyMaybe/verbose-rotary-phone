@@ -1,35 +1,29 @@
 # Verbose-Rotary-Phone
 
-Making a concept re-creation environment.
+Structure sets you free. Communicating and designing concepts.
 
-
-- [ ] Tools within environment
-  - [x] Text
-  - [ ] Drawing
-  - [ ] Images
-  - [ ] Video
-  - [ ] Links to other concepts/files
-  - [ ] Links to components on the same page
-- [x] Saving/Loading
-  - [ ] [folder/project nav](https://svelte.dev/examples#svelte-self)
-  - [ ] Forking/Merging
-- [ ] Useability (mobiles)
-  - [ ] double tap to create
+- [ ] Tools / Functions
+  - [ ] Panning / Select
+  - [ ] Create
+    - [ ] Text
+    - [ ] Images
+    - [ ] Video
+  - [ ] Draw
+- [ ] Navigation
+  - [ ] Links to other [files/folders/projects](https://svelte.dev/examples#svelte-self)
+  - [ ] Links to objects on the same page
+- [ ] Systems
+  - [x] Local Saving/Loading
+  - [ ] Serverless Saving/Loading/Syncing
+  - [ ] Use of Git (Forking/Merging/diff)
+- [ ] Mobile
+  - [ ] tap -> use tool
+  - [ ] double tap -> create
+  - [ ] tap and hold -> create obj
+  - [ ] tap and drag -> pan around the scene
   - [ ] initial tutorial
-
-Open-Source clientside app here we come.
-
-TODO:
-
- 1. links to the objects
- 2. app transitions to object
-    1. jump within page
-    2. fades out/loading/in to another page
-1. storage & storage navigation
-   1. local storage save & load
-   2. navigator of files
-2. service worker
-   1. intercept connections to route towards local-storage
+- [ ] Look and feel
+  - [ ] [themes](https://dev.to/josef/theming-in-svelte-with-css-variables-53kd)
 
 The initial part of displaying a files history is the git command `git log`
 Github's display of the histroy is a returned result of this command.
